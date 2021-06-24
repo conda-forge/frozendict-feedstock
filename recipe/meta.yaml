@@ -31,8 +31,8 @@ test:
 
 about:
   home: https://github.com/Marco-Sulla/python-frozendict
-  license: MIT
-  license_family: MIT
+  license: LGPL-3.0
+  license_family: LGPL
   license_file: LICENSE.txt
   summary: An immutable dictionary
   dev_url: https://github.com/Marco-Sulla/python-frozendict
