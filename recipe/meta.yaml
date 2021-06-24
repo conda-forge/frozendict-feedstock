@@ -30,12 +30,12 @@ test:
     - frozendict
 
 about:
-  home: https://github.com/slezica/python-frozendict
+  home: https://github.com/Marco-Sulla/python-frozendict
   license: MIT
   license_family: MIT
   license_file: LICENSE.txt
   summary: An immutable dictionary
-  dev_url: https://github.com/slezica/python-frozendict
+  dev_url: https://github.com/Marco-Sulla/python-frozendict
 
 extra:
   recipe-maintainers:
