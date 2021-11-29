@@ -1,15 +1,15 @@
 About frozendict
 ================
 
-Home: https://github.com/slezica/python-frozendict
+Home: https://github.com/Marco-Sulla/python-frozendict
 
-Package license: MIT
+Package license: LGPL-3.0-only
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/frozendict-feedstock/blob/master/LICENSE.txt)
 
 Summary: An immutable dictionary
 
-Development: https://github.com/slezica/python-frozendict
+Development: https://github.com/Marco-Sulla/python-frozendict
 
 Current build status
 ====================
@@ -57,7 +57,8 @@ conda search frozendict --channel conda-forge
 About conda-forge
 =================
 
-[![Powered by NumFOCUS](https://img.shields.io/badge/powered%20by-NumFOCUS-orange.svg?style=flat&colorA=E1523D&colorB=007D8A)](http://numfocus.org)
+[![Powered by
+NumFOCUS](https://img.shields.io/badge/powered%20by-NumFOCUS-orange.svg?style=flat&colorA=E1523D&colorB=007D8A)](https://numfocus.org)
 
 conda-forge is a community-led conda channel of installable packages.
 In order to provide high-quality builds, the process has been automated into the
@@ -117,5 +118,6 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
+* [@Marco-Sulla](https://github.com/Marco-Sulla/)
 * [@ltalirz](https://github.com/ltalirz/)
 
