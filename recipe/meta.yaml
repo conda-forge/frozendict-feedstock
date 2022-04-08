@@ -17,9 +17,9 @@ build:
 outputs:
   - name: {{ name }}
     build:
-      script: python -m pip install . --no-deps -vv  # [noarch.lower() == 'false']
-      script: python setup.py py install  # [noarch.lower() == 'true']
-      noarch: python  # [noarch.lower() == 'true']
+      script: python -m pip install . --no-deps -vv  # [not noarch_selector]
+      script: python setup.py py install  # [noarch_selector]
+      noarch: python  # [noarch_selector]
 
     requirements:
       build:
