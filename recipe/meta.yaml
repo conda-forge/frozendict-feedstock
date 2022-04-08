@@ -2,10 +2,6 @@
 {% set version = "2.3.0" %}
 {% set sha256 = "da4231adefc5928e7810da2732269d3ad7b5616295b3e693746392a8205ea0b5" %}
 
-{% set build_noarch = False %}
-{% set build_noarch = True %}  # [osx and py==310]
-{% set build_noarch = True %}  # [pypy]
-
 package:
   name: {{ name|lower }}
   version: {{ version }}
@@ -21,7 +17,9 @@ build:
 outputs:
   - name: {{ name }}
     build:
-      script: python -m pip install . --no-deps -vv
+      script: python -m pip install . --no-deps -vv [noarch.lower() == 'false']
+      script: python setup.py py install [noarch.lower() == 'true']
+      noarch: python [noarch.lower() == 'true']
 
     requirements:
       build:
