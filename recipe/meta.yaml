@@ -2,8 +2,6 @@
 {% set version = "2.3.0" %}
 {% set sha256 = "da4231adefc5928e7810da2732269d3ad7b5616295b3e693746392a8205ea0b5" %}
 
-{% set build_noarch = True if (linux64 and py==310) else False %}
-
 package:
   name: {{ name|lower }}
   version: {{ version }}
@@ -14,50 +12,25 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 3
+  script: python -m pip install . --no-deps -vv    # [not (linux64 and py==310)]
+  script: python setup.py py install               # [linux64 and py==310]
+  noarch: python                                   # [linux64 and py==310]
+  number: 4
 
-outputs:
-  {% if build_noarch %}
-  - name: {{ name }}
-    build:
-      script: python setup.py py install
-      noarch: python
-      number: 4
+requirements:
+  build:                     # [not (linux64 and py==310)]
+    - {{ compiler('c') }}    # [not (linux64 and py==310)]
+  host:
+    - pip
+    - python
+    - setuptools
+    - wheel
+  run:
+    - python
 
-    requirements:
-      host:
-        - pip
-        - python
-        - setuptools
-        - wheel
-
-      run:
-        - python
-
-    test:
-      imports:
-        - frozendict
-  {% else %}
-  - name: {{ name }}
-    build:
-      script: python -m pip install . --no-deps -vv
-
-    requirements:
-      build:
-        - {{ compiler('c') }}
-      host:
-        - pip
-        - python
-        - setuptools
-        - wheel
-
-      run:
-        - python
-
-    test:
-      imports:
-        - frozendict
-  {% endif %}
+test:
+  imports:
+    - frozendict
 
 about:
   home: https://github.com/Marco-Sulla/python-frozendict
