@@ -22,11 +22,13 @@ requirements:
     - {{ compiler('c') }}    # [not (linux64 and py==310)]
   host:
     - pip
-    - python
+    - python                 # [not (linux64 and py==310)]
+    - python >=3.7           # [linux64 and py==310]
     - setuptools
     - wheel
   run:
-    - python
+    - python                 # [not (linux64 and py==310)]
+    - python >=3.7           # [linux64 and py==310]
 
 test:
   imports:
