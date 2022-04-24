@@ -2,8 +2,7 @@
 {% set version = "2.3.0" %}
 {% set sha256 = "da4231adefc5928e7810da2732269d3ad7b5616295b3e693746392a8205ea0b5" %}
 
-{% set build_noarch = False %}
-{% set build_noarch = True %}  # [linux64 and py==310]
+{% set build_noarch = True if (linux64 and py==310) else False %}
 
 package:
   name: {{ name|lower }}
@@ -18,13 +17,14 @@ build:
   number: 3
 
 outputs:
+  {% if build_noarch %}
   - name: {{ name }}
     build:
-      script: python -m pip install . --no-deps -vv
+      script: python setup.py py install
+      noarch: python
+      number: 4
 
     requirements:
-      build:
-        - {{ compiler('c') }}
       host:
         - pip
         - python
@@ -37,15 +37,14 @@ outputs:
     test:
       imports:
         - frozendict
-  
-  {% if build_noarch %}
+  {% else %}
   - name: {{ name }}
     build:
-      script: python setup.py py install
-      noarch: python
-      number: 4
+      script: python -m pip install . --no-deps -vv
 
     requirements:
+      build:
+        - {{ compiler('c') }}
       host:
         - pip
         - python
