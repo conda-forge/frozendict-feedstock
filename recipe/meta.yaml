@@ -1,27 +1,50 @@
-{% set name = "frozendict" %}
 {% set version = "2.3.10" %}
-{% set sha256 = "aadc83510ce82751a0bb3575231f778bc37cbb373f5f05a52b888e26cbb92f79" %}
 
 {% set build_noarch = False %}
 {% set build_noarch = True %}  # [ppc64le and py==312]
+{% set build_number = 3 %}
 
 package:
-  name: {{ name|lower }}
+  name: frozendict
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  url: https://pypi.io/packages/source/f/frozendict/frozendict-{{ version }}.tar.gz
+  sha256: aadc83510ce82751a0bb3575231f778bc37cbb373f5f05a52b888e26cbb92f79
 
 build:
-  number: 1
+  number: {{ build_number * 2 + 1 }}
 
 outputs:
-  - name: {{ name }}
+  {% if build_noarch %}
+  - name: frozendict
     build:
-      script: python -m pip install . --no-deps -vv
+      noarch: python
+      number: {{ build_number * 2 }}
+      script:
+        - FROZENDICT_PURE_PY=1 python setup.py bdist_wheel
+        - python -m pip install --no-deps -vv dist/*.whl
+    requirements:
+      host:
+        - pip
+        - python >=3.7
+        - setuptools
+        - wheel
+      run:
+        - python >=3.7
+    test:
+      imports:
+        - frozendict
+      requires:
+        - pip
+      commands:
+        - pip check
+  {% endif %}
 
+  - name: frozendict
+    build:
+      number: {{ build_number * 2 + 1 }}
+      script: python -m pip install . --no-deps -vv --no-build-isolation
     requirements:
       build:
         - python                                 # [build_platform != target_platform]
@@ -32,35 +55,15 @@ outputs:
         - python
         - setuptools
         - wheel
-
       run:
         - python
-
     test:
       imports:
         - frozendict
-
-  {% if build_noarch %}
-  - name: {{ name }}
-    build:
-      script: FROZENDICT_PURE_PY=1 python setup.py install
-      noarch: python
-      number: 2
-
-    requirements:
-      host:
+      requires:
         - pip
-        - python
-        - setuptools
-        - wheel
-
-      run:
-        - python
-
-    test:
-      imports:
-        - frozendict
-  {% endif %}
+      commands:
+        - pip check
 
 about:
   home: https://github.com/Marco-Sulla/python-frozendict
