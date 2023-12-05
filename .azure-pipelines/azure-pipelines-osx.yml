@@ -96,7 +96,7 @@ jobs:
         CONFIG: osx_arm64_build_noarchyespython3.9.____cpython
         UPLOAD_PACKAGES: 'True'
         SHORT_CONFIG: osx_arm64_build_noarchyespython3.9.____cpython
-    maxParallel: 18
+    maxParallel: 16
   timeoutInMinutes: 360
 
   steps:

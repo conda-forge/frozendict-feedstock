@@ -56,7 +56,7 @@ jobs:
         CONFIG: win_64_build_noarchyespython3.9.____cpython
         UPLOAD_PACKAGES: 'True'
         SHORT_CONFIG: win_64_build_noarchyespython3.9.____cpython
-    maxParallel: 10
+    maxParallel: 9
   timeoutInMinutes: 360
   variables:
     CONDA_BLD_PATH: D:\\bld\\
