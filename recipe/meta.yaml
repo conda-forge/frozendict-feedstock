@@ -15,26 +15,18 @@ source:
 outputs:
   - name: {{ name }}
     build:
-      script: python -m pip install . --no-deps -vv         # [build_noarch == 'no']
-      number: {{ build_number * 2 }}                        # [build_noarch == 'no']
-      script: FROZENDICT_PURE_PY=1 python setup.py install  # [build_noarch == 'yes']
-      noarch: python                                        # [build_noarch == 'yes']
-      number: {{ build_number * 2 + 1 }}                    # [build_noarch == 'yes']
+      script: FROZENDICT_PURE_PY=1 python setup.py install
+      noarch: python
+      number: {{ build_number * 2 + 1 }}
 
     requirements:
-      build:                                     # [build_noarch == 'no']
-        - python                                 # [build_noarch== 'no' and build_platform != target_platform]
-        - cross-python_{{ target_platform }}     # [build_noarch== 'no' and build_platform != target_platform]
-        - {{ compiler('c') }}                    # [build_noarch == 'no']
       host:
         - pip
-        - python        # [build_noarch == 'no']
-        - python >=3.7  # [build_noarch == 'yes']
+        - python >=3.7
         - setuptools
         - wheel
       run:
-        - python        # [build_noarch == 'no']
-        - python >=3.7  # [build_noarch == 'yes']
+        - python >=3.7
 
     test:
       imports:
