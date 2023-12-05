@@ -29,6 +29,8 @@ outputs:
         - python >=3.7
 
     test:
+      requires:
+        - python <3.12
       imports:
         - frozendict
 
