@@ -1,6 +1,6 @@
 {% set name = "frozendict" %}
-{% set version = "2.4.2" %}
-{% set sha256 = "741779e1d1a2e6bb2c623f78423bd5d14aad35dc0c57e6ccc89e54eaab5f1b8a" %}
+{% set version = "2.4.3" %}
+{% set sha256 = "3bb6831c099028b49551fc9852f6ed43a0b901cecb65f6d293141a139dfa971f" %}
 
 package:
   name: {{ name|lower }}
@@ -20,6 +20,7 @@ requirements:
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
   host:
     - pip
     - python
