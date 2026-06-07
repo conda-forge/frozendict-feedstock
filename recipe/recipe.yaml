@@ -10,7 +10,7 @@ package:
   version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  url: https://pypi.org/packages/source/f/frozendict/frozendict-${{ version }}.tar.gz
   sha256: e478fb2a1391a56c8a6e10cc97c4a9002b410ecd1ac28c18d780661762e271bd
 
 build:
