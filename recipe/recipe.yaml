@@ -18,11 +18,13 @@ source:
   url: https://pypi.org/packages/source/f/frozendict/frozendict-${{ version }}.tar.gz
   sha256: e478fb2a1391a56c8a6e10cc97c4a9002b410ecd1ac28c18d780661762e271bd
 
+build:
+  number: ${{ build_number }}
+
 outputs:
   - package:
       name: frozendict
     build:
-      number: ${{ build_number }}
       skip: not (linux and x86_64 and is_python_min)
       noarch: python
       script:
