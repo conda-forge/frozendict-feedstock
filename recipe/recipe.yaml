@@ -3,7 +3,6 @@ schema_version: 1
 
 context:
   version: "2.4.7"
-  build_number: 2
   # verify against a known latest python
   python_check_max: "3.14"
   # avoid python 3_x absent from:
@@ -19,7 +18,7 @@ source:
   sha256: e478fb2a1391a56c8a6e10cc97c4a9002b410ecd1ac28c18d780661762e271bd
 
 build:
-  number: ${{ build_number }}
+  number: 2
 
 outputs:
   - package:
@@ -72,8 +71,6 @@ outputs:
   - package:
       name: frozendict
     build:
-      # use a higher build number encourages solvers to pick this
-      number: ${{ 1000 + build_number }}
       skip: match(python, ">=" ~ python_no_c_min)
       script:
         env:
