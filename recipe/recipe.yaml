@@ -33,6 +33,11 @@ outputs:
         content:
           - python -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
     requirements:
+      build:
+        - if: build_platform != host_platform
+          then:
+            - python
+            - cross-python_${{ host_platform }}
       host:
         - pip
         - python ${{ python_min }}.*
