@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "2.4.7"
+  version: "2.5.0"
   # verify against a known latest python
   python_check_max: "3.14"
   # avoid python 3_x absent from:
@@ -15,10 +15,10 @@ recipe:
 
 source:
   url: https://pypi.org/packages/source/f/frozendict/frozendict-${{ version }}.tar.gz
-  sha256: e478fb2a1391a56c8a6e10cc97c4a9002b410ecd1ac28c18d780661762e271bd
+  sha256: 336de5e7fd05b73ef07a3da368c986c68fd63fbcf9c41340d18e45d6d03e9a4c
 
 build:
-  number: 2
+  number: 0
 
 outputs:
   - package:
